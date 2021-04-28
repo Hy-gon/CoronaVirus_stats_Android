@@ -25,14 +25,12 @@ class RecyclerViewAdapter: RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(
 
         class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
             private val tvName = view.findViewById<TextView>(R.id.tvName)
-            private val tvActiveCase = view.findViewById<TextView>(R.id.tvActiveCase)
             private val tvTotalCase = view.findViewById<TextView>(R.id.tvTotalCase)
             private val tvDeaths = view.findViewById<TextView>(R.id.tvDeath)
             private val tvRecovered = view.findViewById<TextView>(R.id.tvRecovered)
 
             fun bind(state: State) {
                 tvName.text = state.name
-                tvActiveCase.text = state.activeCases.toString()
                 tvTotalCase.text = state.totalCases.toString()
                 tvDeaths.text = state.deaths.toString()
                 tvRecovered.text = state.recovered.toString()

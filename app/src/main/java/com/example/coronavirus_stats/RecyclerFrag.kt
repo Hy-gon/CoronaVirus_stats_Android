@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,20 +13,22 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coronavirus_stats.recycler.ListRecycler
-import com.example.coronavirus_stats.retro.ImportState
-import com.example.coronavirus_stats.retro.RetroFitBase
+import com.example.coronavirus_stats.MainActivityView
 
-class RecyclerFrag : Fragment()
-{
+class RecyclerFrag : Fragment() {
+
     private lateinit var recyclerAdapter: RecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_recycler, container, false)
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.recycler_list, container, false)
+
         initViewModel(view)
         initViewModel()
+
         return view
     }
 
@@ -43,7 +47,10 @@ class RecyclerFrag : Fragment()
         viewModel.getRecyclerListObserver().observe(this, Observer<ListRecycler> {
             if(it != null) {
                 recyclerAdapter.setUpdatedData(it.data.State)
-            }})
+            } else {
+                Toast.makeText(activity, "Aucune donnée à afficher", Toast.LENGTH_SHORT)
+            }
+        })
         viewModel.makeApiCall()
     }
 
