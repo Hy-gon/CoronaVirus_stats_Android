@@ -1,3 +1,5 @@
+# :construction: Still not functionnal :construction:
+
 # CoronaVirus_stats
 
 - Include some country list with (Name,  Total Case, Death, Recovered)
