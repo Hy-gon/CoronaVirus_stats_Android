@@ -1,5 +1,6 @@
 package com.example.coronavirus_stats
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +24,6 @@ class RecyclerFrag : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.recycler_list, container, false)
 
         initViewModel(view)
@@ -42,13 +42,14 @@ class RecyclerFrag : Fragment() {
         recyclerView.adapter = recyclerAdapter
     }
 
+    @SuppressLint("ShowToast")
     private fun initViewModel() {
         val viewModel = ViewModelProvider(this).get(MainActivityView::class.java)
         viewModel.getRecyclerListObserver().observe(this, Observer<ListRecycler> {
             if(it != null) {
                 recyclerAdapter.setUpdatedData(it.data.State)
             } else {
-                Toast.makeText(activity, "Aucune donnée à afficher", Toast.LENGTH_SHORT)
+                makeText(activity, "Aucune donnée à afficher", Toast.LENGTH_SHORT)
             }
         })
         viewModel.makeApiCall()

@@ -12,7 +12,6 @@ import com.example.coronavirus_stats.recycler.States
 import com.example.coronavirus_stats.R
 import com.example.coronavirus_stats.MainActivity
 
-
 class RecyclerViewAdapter: RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>()
 {
         lateinit var context: MainActivity
